@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <header>
+        <i class="header__icon">icon</i>
+        <h1 class="header__title"> Árboles como lista generalizada</h1>
+    </header>
+    <main>
+        <button id="instructions">Instrucciones</button>
+        <section id="enterSection">
+            <label for="txtTree">Ingrese la Lista generalizada como una Hilera</label>
+            <input type="text" id="txtTree" placeholder="Ingrese el árbol">
+            <button>Enter</button>
+        </section>
+        <section class="output">
+            <div class="tree-print">
+                <p class="tree-print__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci nisi veniam ab!</p>
+                <p class="tree-print__tree"></p>
+                <p class="tree-print__exeption hiden">El árbol que usted ingresó es inválido, revise he intente nuevamente</p>
+            </div>
+            <div class="tree-information">
+                <ul>
+                    <li class="information-item"><span class="information-item__name">Altura: </span></li>
+                    <li class="information-item"><span class="information-item__name">Grado del árbol: </span></li>
+                    <li class="information-item"><span class="information-item__name">Número de hojas: </span></li>
+                </ul>
+            </div>
+            <div class="element-information">
+                <input type="text" class="element-information__search" placeholder="Ingrese un elemento">
+                <button class="btn search" id="btnSearch"><i class="btn__icon"></i>Buscar</button>
+                <ul>
+                    <li class="information-item"><span class="information-item__name">Grado del elemento: </span></li>
+                    <li class="information-item"><span class="information-item__name">Nivel del elemento: </span></li>
+                    <li class="information-item"><span class="information-item__name">Ancestros: </span></li>
+                </ul>
+                <p class="element-information__not-found hiden">El elemento no ha sido encontrado en el árbol que usted ingresó</p>
+            </div>
+        </section>
+        <footer class="footer">
+            <p class="footer-text"> Aplicación desarrollado como práctica para el curso Lógica y Representación III. Ingeniería de Sistemas. Universidad de Antioquia</p>
+            <div class="credits">
+                <p class="credits__text">Desarrollado por:</p>
+                <div class="credits__names">
+                    <p class="name">David Upegui Londoño</p>
+                    <p class="name">Juan Manuel Vera</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+</body>
+</html>
