@@ -48,28 +48,40 @@
             </div>
         </section>
         <section class="section section--output">
-            <article class="tree-print">
-                <p class="tree-print__text">La impresión del árbol</p>
-                <p class="tree-print__tree"></p>
-                <p class="tree-print__exeption hidden">El árbol que usted ingresó es inválido, revise he intente nuevamente</p>
-            </article>
-            <article class="tree-information">
-                <ul>
-                    <li class="information-item"><span class="information-item__name">Altura del árbol: </span></li>
-                    <li class="information-item"><span class="information-item__name">Grado del árbol: </span></li>
-                    <li class="information-item"><span class="information-item__name">Número de hojas: </span></li>
-                </ul>
-            </article>
-            <article class="element-information">
-                <input type="text" class="element-information__search" placeholder="Ingrese un elemento">
-                <button class="btn search" id="btnSearch"><i class="btn__icon"></i>Buscar</button>
-                <ul>
-                    <li class="information-item"><span class="information-item__name">Grado del elemento: </span></li>
-                    <li class="information-item"><span class="information-item__name">Nivel del elemento: </span></li>
-                    <li class="information-item"><span class="information-item__name">Ancestros: </span></li>
-                </ul>
-                <p class="element-information__not-found hiden">El elemento no ha sido encontrado en el árbol que usted ingresó</p>
-            </article>
+            <div class="output-container" id="output">
+                <article class="tree-print">
+                    <div class="tree-print__text " id="tree-print">
+                        <p class="tree-print__text">El árbol que usted ingresó es:</p>
+                        <p class="tree-print__tree" id="string-tree"></p>
+                    </div>
+                    <p class="exception hidden">El árbol que ingresó es inválido, revise he intente nuevamente</p>
+                </article>
+                <div class="tree-attributes">
+                    <article class="tree-information">
+                        <ul class="attribute-list">
+                            <li class="attribute"><span class="attribute__name">Altura del árbol: </span><span class="attribute-value"></span></li>
+                            <li class="attribute"><span class="attribute__name">Grado del árbol: </span><span class="attribute-value"></span></span></li>
+                            <li class="attribute"><span class="attribute__name">Número de hojas: </span><span class="attribute-value"></span></span></li>
+                        </ul>
+                    </article>
+                    <article class="element-information">
+                        <label for="input-element" class="element-information__text">Ingrese un elemento para buscar en el árbol:</label>
+                        <div class="element-information__form">
+                            <input type="text" class="input input--element-information" id="input-element" placeholder="Ej: a">
+                            <button class="btn btn--search-element" id="btnSearch"><i class="btn__icon fa-solid fa-magnifying-glass"></i><span class="btn__text--search">Buscar</span></button>
+                        </div>
+                        <div class="element-information__attributes">
+                            <ul class="attribute-list" id="element-attributes">
+                                <li class="attribute"><span class="attribute__name">Grado del elemento: </span><span class="attribute-value"></span></span></li>
+                                <li class="attribute"><span class="attribute__name">Nivel del elemento: </span><span class="attribute-value"></span></span></li>
+                                <li class="attribute"><span class="attribute__name">Ancestros: </span><span class="attribute-value"></span></span></li>
+                            </ul>
+                            <p class="exception hidden">El elemento no ha sido encontrado.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <p class="exception exception--enter-tree hidden">Ingrese un árbol</p>
         </section>
     </main>
     <footer class="footer">
