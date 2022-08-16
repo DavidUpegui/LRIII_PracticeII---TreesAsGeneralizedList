@@ -7,6 +7,9 @@
 }
 body{
     background-color: rgba(168, 244, 205, 0.529);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 
 }
 a{
@@ -242,6 +245,32 @@ a{
     color:  rgba(24, 94, 58, 0.464);
     letter-spacing: 0.2rem;
 }
+.footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: auto;
+    background-color: rgb(49, 192, 118);
+    padding: 1rem 10%;
+    font-size: 12px;
+}
+.footer__text{
+    text-align: center;
+}
+.footer__creators{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.footer__creators-text{
+    margin-right: 10px ;
+    align-self: flex-start;
+}
+.footer__tec-copyright{
+    margin-top: 20px;
+    width: max-content;
+}
 
 
 @media  screen and (max-width: 992px) {
@@ -274,6 +303,9 @@ a{
         transition: left 0.3s;
         scroll-behavior: auto;
         z-index: 5;
+    }
+    .nav-menu{
+        margin-top: 1rem;
     }
     .nav-menu__items{
         flex-direction: column;
