@@ -39,22 +39,22 @@
             <a href="#" class="btn btn--instructions">Instrucciones</a>
         </nav>
     </header>
+
     <main class="container">
         <section id="enterSection" class="section section--enter">
             <label for="txtTree" class="section-enter__text">Ingrese la Lista generalizada como una Hilera</label>
             <div class="section-enter__form">
-                <input type="text" id="txtTree" class="input input--section-enter" placeholder="ej: a(b,c,d(e,f)g,h(i,j))">
-                <button class="btn btn--section-enter">Ingresar</button>
+                <input type="text" id="inputTree" class="input input--section-enter" value="" placeholder="Ej: a(b,c,d(e,f)g,h(i,j))">
+                <button class="btn btn--section-enter btn--disabled" id="btnEnterTree">Ingresar</button>
             </div>
         </section>
         <section class="section section--output">
-            <div class="output-container" id="output">
+            <div class="output-container hidden" id="output">
                 <article class="tree-print">
                     <div class="tree-print__text " id="tree-print">
                         <p class="tree-print__text">El árbol que usted ingresó es:</p>
-                        <p class="tree-print__tree" id="string-tree"></p>
+                        <p class="tree-print__tree-string" id="txtTreeString"></p>
                     </div>
-                    <p class="exception hidden">El árbol que ingresó es inválido, revise he intente nuevamente</p>
                 </article>
                 <div class="tree-attributes">
                     <article class="tree-information">
@@ -67,21 +67,23 @@
                     <article class="element-information">
                         <label for="input-element" class="element-information__text">Ingrese un elemento para buscar en el árbol:</label>
                         <div class="element-information__form">
-                            <input type="text" class="input input--element-information" id="input-element" placeholder="Ej: a">
-                            <button class="btn btn--search-element" id="btnSearch"><i class="btn__icon fa-solid fa-magnifying-glass"></i><span class="btn__text--search">Buscar</span></button>
+                            <input type="text" class="input input--element-information" id="inputElement" placeholder="Ej: a">
+                            <button class="btn btn--search-element btn--disabled" id="btnSearchElement"><i class="btn__icon fa-solid fa-magnifying-glass"></i><span class="btn__text--search">Buscar</span></button>
                         </div>
                         <div class="element-information__attributes">
-                            <ul class="attribute-list" id="element-attributes">
+                            <ul class="attribute-list hidden" id="txtElementAttributes">
+                                <p class="element-information__element-founded">Se encontró el elemento <span class="element-information__element" id="txtElementFounded">a</span></p>
                                 <li class="attribute"><span class="attribute__name">Grado del elemento: </span><span class="attribute-value"></span></span></li>
                                 <li class="attribute"><span class="attribute__name">Nivel del elemento: </span><span class="attribute-value"></span></span></li>
                                 <li class="attribute"><span class="attribute__name">Ancestros: </span><span class="attribute-value"></span></span></li>
                             </ul>
-                            <p class="exception hidden">El elemento no ha sido encontrado.</p>
+                            <p class="exception hidden" id="txtElementNotFoundException">El elemento no ha sido encontrado.</p>
                         </div>
                     </article>
                 </div>
             </div>
-            <p class="exception exception--enter-tree hidden">Ingrese un árbol</p>
+            <p class="exception hidden" id="txtWrongTreeException">El árbol que ingresó es inválido, revise he intente nuevamente</p>
+            <p class="exception exception--enter-tree" id="enterTreeException">Ingrese un árbol</p>
         </section>
     </main>
     <footer class="footer">
@@ -94,7 +96,7 @@
             </div>
         </div>
         <div class="footer__tec-copyright">
-        <a class="footer__tec-copyright" target="_blank" href="https://icons8.com/icon/oFRBvjBTmigj/tree">Tree</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+        <a class="footer__link" target="_blank" href="https://icons8.com/icon/oFRBvjBTmigj/tree">Tree</a> icon by <a class="footer__link" target="_blank" href="https://icons8.com">Icons8</a>
         </div>
     </footer>
     <script src="./js/index.js"></script>

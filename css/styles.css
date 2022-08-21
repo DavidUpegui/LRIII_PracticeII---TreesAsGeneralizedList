@@ -15,9 +15,9 @@ body{
 a{
     text-decoration: none;
 }
-
 .hidden{
     opacity: 0;
+    pointer-events: none;
 }
 .btn{
     padding: 5px 10px;
@@ -29,6 +29,7 @@ a{
     justify-content: center;
     margin: 5px;
     transition: background-color 0.2s;
+    transition: filter 0.2s;
 }
 .btn__text--search{
     padding-left: 0.2rem;
@@ -161,6 +162,8 @@ a{
     color: rgb(246, 244, 241);
     background-color: rgb(48, 183, 113);
     padding: 8px 20px;
+    border:2px solid rgb(153, 247, 102);
+    box-shadow: 0 0 5px rgb(153, 247, 102);
 }
 .btn--section-enter:hover{
     cursor: pointer;
@@ -184,6 +187,15 @@ a{
     flex-direction: column;
     align-items: center;
 }
+.tree-print__tree-string{
+    letter-spacing: 2px;
+    font-weight: 600;
+    background-color: rgb(105, 206, 154);
+    margin: 10px;
+    padding-inline: 1rem;
+    border-radius: 1rem;
+    font-style: italic;
+}
 .tree-attributes{
     width: 80%;
     display: flex;
@@ -206,6 +218,18 @@ a{
     align-items: center;
     margin-top: 5px;
 }
+.element-information__element-founded{
+    margin-top: 10px;
+    margin-bottom:5px;
+}
+.element-information__element{
+    letter-spacing: 2px;
+    font-weight: 600;
+    background-color: rgb(105, 206, 154);
+    padding-inline: 0.5rem;
+    border-radius: 1rem;
+    text-align: center;
+}
 .element-information__attributes{
     position: relative;
 }
@@ -216,14 +240,17 @@ a{
     color: rgb(246, 244, 241);
     background-color: rgb(39, 149, 92);
     padding: 4px 16px;
+    border:2px solid rgb(153, 247, 102);
+    box-shadow: 0 0 5px rgb(153, 247, 102);
 }
 .btn--search-element:hover{
     cursor: pointer;
     background-color:  rgb(24, 94, 58);
 }
 .attribute{
-    margin-block: 3px;
+    margin-block: 4px;
 }
+
 .attribute__name{
     font-weight: 700;
 }
@@ -251,7 +278,7 @@ a{
     align-items: center;
     margin-top: auto;
     background-color: rgb(49, 192, 118);
-    padding: 1rem 10%;
+    padding: 1rem 15%;
     font-size: 12px;
 }
 .footer__text{
@@ -271,6 +298,20 @@ a{
     margin-top: 20px;
     width: max-content;
 }
+.btn--disabled{
+    pointer-events: none;
+    filter: grayscale(75%);
+    border:none;
+    box-shadow: none;
+}
+.footer__link{
+    color: rgb(18, 18, 183);
+    font-weight: 600;
+}
+.footer__link:visited{
+    color: rgb(18, 18, 183);
+}
+
 
 
 @media  screen and (max-width: 992px) {
