@@ -15,7 +15,7 @@ class listaGeneralizada{
         this.#primerNodo = x
         let ultimo = x
         let n = s.length
-        for (let i=2;i<n;i++){
+        for (let i=1;i<n;i++){
             switch(s[i]){
                 case ',':
                     x = new nodoLg(null)
@@ -24,6 +24,9 @@ class listaGeneralizada{
                     break;
 
                 case '(':
+                    x = new nodoLg(null)
+                    ultimo.asignaLiga(x)
+                    ultimo = x
                     pila.apilar(ultimo)
                     x = new nodoLg(null)
                     ultimo.asignaSw(1)
