@@ -1,4 +1,4 @@
-class nodoLg extends nodoSimple{
+class NodoLg extends NodoSimple{
     #sw
 
     constructor(x){

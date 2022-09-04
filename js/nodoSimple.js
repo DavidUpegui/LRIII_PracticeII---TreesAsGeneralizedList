@@ -1,4 +1,4 @@
-class nodoSimple {
+class NodoSimple {
     #dato
     #liga
 

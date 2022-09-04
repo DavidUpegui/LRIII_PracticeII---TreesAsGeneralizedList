@@ -1,3 +1,5 @@
+import { ArbolLG } from "./ArbolLG";
+
 const nav = document.getElementById('nav');
 const btnToggleMenu = document.getElementById('toggle-menu');
 const btnEnterTree = document.getElementById('btnEnterTree');

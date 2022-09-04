@@ -1,4 +1,4 @@
-class listaGeneralizada{
+class ListaGeneralizada{
     #primerNodo
 
     constructor(){
@@ -22,7 +22,6 @@ class listaGeneralizada{
                     ultimo.asignaLiga(x)
                     ultimo = x
                     break;
-
                 case '(':
                     x = new nodoLg(null)
                     ultimo.asignaLiga(x)
@@ -33,7 +32,6 @@ class listaGeneralizada{
                     ultimo.asignaDato(x)
                     ultimo = x
                     break;
-
                 case ')':
                     ultimo = pila.desapilar()
                     break;
