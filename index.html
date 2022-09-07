@@ -59,9 +59,9 @@
                 <div class="tree-attributes">
                     <article class="tree-information">
                         <ul class="attribute-list">
-                            <li class="attribute"><span class="attribute__name">Altura del árbol: </span><span class="attribute-value"></span></li>
-                            <li class="attribute"><span class="attribute__name">Grado del árbol: </span><span class="attribute-value"></span></span></li>
-                            <li class="attribute"><span class="attribute__name">Número de hojas: </span><span class="attribute-value"></span></span></li>
+                            <li class="attribute"><span class="attribute__name">Altura del árbol: </span><span class="attribute-value" id="treeHigh"></span></li>
+                            <li class="attribute"><span class="attribute__name">Grado del árbol: </span><span class="attribute-value" id="treeGrade"></span></span></li>
+                            <li class="attribute"><span class="attribute__name">Número de hojas: </span><span class="attribute-value" id="treeLeaves"></span></span></li>
                         </ul>
                     </article>
                     <article class="element-information">
@@ -73,9 +73,9 @@
                         <div class="element-information__attributes">
                             <ul class="attribute-list hidden" id="txtElementAttributes">
                                 <p class="element-information__element-founded">Se encontró el elemento <span class="element-information__element" id="txtElementFounded">a</span></p>
-                                <li class="attribute"><span class="attribute__name">Grado del elemento: </span><span class="attribute-value"></span></span></li>
-                                <li class="attribute"><span class="attribute__name">Nivel del elemento: </span><span class="attribute-value"></span></span></li>
-                                <li class="attribute"><span class="attribute__name">Ancestros: </span><span class="attribute-value"></span></span></li>
+                                <li class="attribute"><span class="attribute__name">Grado del elemento: </span><span class="attribute-value" id="elementGrade"></span></span></li>
+                                <li class="attribute"><span class="attribute__name">Nivel del elemento: </span><span class="attribute-value" id="elementLevel"></span></span></li>
+                                <li class="attribute"><span class="attribute__name">Ancestros: </span><span class="attribute-value" id="elementAncestor"></span></span></li>
                             </ul>
                             <p class="exception hidden" id="txtElementNotFoundException">El elemento no ha sido encontrado.</p>
                         </div>
@@ -99,6 +99,11 @@
         <a class="footer__link" target="_blank" href="https://icons8.com/icon/oFRBvjBTmigj/tree">Tree</a> icon by <a class="footer__link" target="_blank" href="https://icons8.com">Icons8</a>
         </div>
     </footer>
+    <script src="./js/ArbolLG.js"></script>
+    <script src="./js/nodoSimple.js"></script>
+    <script src="./js/UiController.js"></script>
+    <script src="./js/pila.js"></script>
+    <script src="./js/nodoLg.js"></script>
     <script src="./js/index.js"></script>
     <script src="https://kit.fontawesome.com/7532c04ea7.js" crossorigin="anonymous"></script>
 </body>

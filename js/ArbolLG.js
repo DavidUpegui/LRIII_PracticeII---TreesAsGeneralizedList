@@ -1,9 +1,9 @@
 
-export class ArbolLG{
-    #raiz;
+class ArbolLG{
+    #raiz = null;
+    #string;
 
     ArbolLG(){
-        this.#raiz = null;
     }
     get raiz(){
         return this.#raiz
@@ -11,12 +11,24 @@ export class ArbolLG{
     set raiz(raiz){
         this.#raiz = raiz
     }
+    get string(){
+        return this.#string;
+    }
+    set string(string){
+        this.#string = string;
+    }
 
     construyeArbol(s){
-        s.replace(/\s+/g, '');
+        /*
+        TODO Faltan las validaciones
+        */
+        let newS = s.replace(/\s+/g, '');
+        let contParenthesis = 0;
         let pila = new Pila();
+        this.string = newS;
         this.raiz = new NodoLg(null);
-        this.raiz.asignaDato(s[1]);
+        console.log(`El dato que entra en la raíz es ${newS[1]}`);
+        this.raiz.asignaDato(newS[1]);
         if(s.length === 2){
             return
         }
@@ -24,8 +36,9 @@ export class ArbolLG{
         this.raiz.asignaLiga(x);
         let ultimo = x;
         for(let i = 3; i <= s.length - 2; i++){
-            switch(s[i]){
+            switch(newS[i]){
                 case '(':
+                    contParenthesis++
                     x = new NodoLg(null);
                     ultimo.asignaSw(1);
                     x.asignaDato(ultimo.retornaDato());
@@ -34,12 +47,14 @@ export class ArbolLG{
                     ultimo = new NodoLg(null);
                     x.asignaLiga(ultimo);
                     break
-                case ',':
+                case ",":
                     x = new NodoLg(null);
                     ultimo.asignaLiga(x);
                     ultimo = x;
+                    break
                 case ')':
                     ultimo = pila.desapilar();
+                    contParenthesis--
                     break
                 default:
                     ultimo.asignaDato(s[i]);
@@ -52,5 +67,9 @@ export class ArbolLG{
     }
     grado(){
 
+    }
+
+    containElement(el){
+        return this.string.includes(el);
     }
 }
