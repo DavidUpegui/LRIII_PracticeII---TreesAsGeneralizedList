@@ -47,8 +47,29 @@ export class ArbolLG{
         }
     }
 
-    altura(){
+    buscarNodo(d,r){
+        let q = null
+        let x = null
+        while(!this.finDeRecorrido(r)){
+            if(r.retornaSw() == 1){
+                q = r.retornaDato()
+                x = this.buscarNodo(d,q)
+                if(x != null && x.retornaDato() == d){
+                    return x
+                }
+                r = r.retornaLiga()
+            }
+            else{
+                if(r.retornaDato()== d){
+                    return r
+                }
+                r = r.retornaLiga()
+            }
+        }
+        return null
+    }
 
+    altura(){     
     }
     grado(){
 
