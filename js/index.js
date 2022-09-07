@@ -1,4 +1,3 @@
-import { ArbolLG } from "./ArbolLG";
 
 const nav = document.getElementById('nav');
 const btnToggleMenu = document.getElementById('toggle-menu');
@@ -13,60 +12,70 @@ const txtElementAttributes = document.getElementById('txtElementAttributes');
 const txtElementFounded = document.getElementById('txtElementFounded');
 const txtWrongTreeException = document.getElementById('txtWrongTreeException');
 const txtElementNotFoundException = document.getElementById('txtElementNotFoundException');
-
+const treeHigh = document.getElementById('treeHigh');
+const treeGrade = document.getElementById('treeGrade');
+const treeLeaves = document.getElementById('treeLeaves');
+const txtElementLevel = document.getElementById('elementLevel');
+const txtElementGrade = document.getElementById('elementGrade');
+const txtElementAncestor = document.getElementById('elementAncestor');
 //Toggle navbar menu
 btnToggleMenu.addEventListener('click', ()=>{
-    console.log('Has been clicked')
-    nav.classList.toggle('nav--show');
+    Visual.toggleNav(nav);
 });
 
 //Verify if some tree has been ingresed in the input for enable or disable the enter button
 inputTree.addEventListener('keyup', ()=>{
-    if (inputTree.value === ""){
-        btnEnterTree.classList.add('btn--disabled');
-    }else{
-        btnEnterTree.classList.remove('btn--disabled');
-    }
+    Visual.verifyInput(inputTree,btnEnterTree);
 });
 
-//Show the output when enter button is clicked
-btnEnterTree.addEventListener('click', ()=>{
-    /*
-    If (Tree isn´t correct){
-        txtWrongTreeException.classList.remove('hidden');
-    }
-    else{
-    */
-    txtWrongTreeException.classList.add('hidden');
-    output.classList.remove('hidden');
-    txtElementAttributes.classList.add('hidden');
-    inputElement.value=''
-    txtEnterTreeException.classList.add('hidden');
-    txtTreeString.innerHTML = `${inputTree.value}`
-    btnEnterTree.classList.add('btn--disabled');
+
+btnEnterTree.addEventListener('click' , ()=>{
+    arbol = new ArbolLG();
+    console.log(`Construte el árbol basado en ${inputTree.value}`);
+    arbol.construyeArbol(inputTree.value);
+
+    //¿Esperar a las excepciones/Validaciones?
+    //¿Hace falta guardar el arbol en el sessionStorage?
+
+    // let altura = arbol.altura(); //TODO
+    // let grado = arbol.grado();   //TODO
+    // let cantHojas = arbol.hojas(); //TODO
+
+    Visual.hideHTML(txtWrongTreeException);
+    Visual.hideHTML(txtElementAttributes);
+    Visual.hideHTML(txtEnterTreeException);
+    inputElement.value = '';
+    txtTreeString.innerHTML = `${inputTree.value}`;
+    Visual.disableButton(btnEnterTree);
     inputTree.value = "";
-});
+    Visual.showHTML(output);
+    Visual.writeAttribute(altura = 1,treeHigh);
+    Visual.writeAttribute(grado = 1,treeGrade);
+    Visual.writeAttribute(cantHojas = 1,treeLeaves);
+})
 
 //Verify if some element has been ingresed in the input for enable or disable the enter button
 inputElement.addEventListener('keyup', ()=>{
-    if (inputElement.value === ""){
-        btnSearchElement.classList.add('btn--disabled');
-    }else{
-        btnSearchElement.classList.remove('btn--disabled');
-    }
+    Visual.verifyInput(inputElement,btnSearchElement);
 });
 
 //Show the element output when the button search is pressed
 btnSearchElement.addEventListener('click' , ()=>{
-    /*
-    if(ElementNotFound)
-        txtElementNotFoundException.classList.remove('hidden')
-    */
-    txtElementNotFoundException.classList.add('hidden');
-    txtElementAttributes.classList.remove('hidden');
-    txtElementFounded.innerHTML = `${inputElement.value}`
-    btnSearchElement.classList.add('btn--disabled');
+    let el  = inputElement.value;
+    if(arbol.containElement(el)){
+        // let elementGrade = arbol.elementGrade(el); //TODO
+        // let elementLevel = arbol.elementLevel(el); //TODO
+        // let elementAncestor = arbol.elementAncestor(el); //TODO
+        Visual.hideHTML(txtElementNotFoundException);
+        Visual.showHTML(txtElementAttributes);
+        txtElementFounded.innerHTML = `${inputElement.value}`
+        Visual.disableButton(btnSearchElement);
+        Visual.writeAttribute(elementGrade = 1, txtElementGrade);
+        Visual.writeAttribute(elementLevel = 1, txtElementLevel);
+        Visual.writeAttribute(elementAncestor = 1, txtElementAncestor);
+    }
+    else{
+        Visual.showHTML(txtElementNotFoundException);
+        Visual.hideHTML(txtElementAttributes);
+    }
 });
-
-
-
