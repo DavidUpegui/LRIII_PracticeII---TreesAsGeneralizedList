@@ -4,15 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300&display=swap" rel="stylesheet">
@@ -25,7 +16,7 @@
             <picture class="header__icon">
                 <img src="./images/icons8-tree-96.png" alt="" class="header__img">
             </picture>
-            <h1 class="header__title"> Árboles como lista generalizada</h1>
+            <h1 class="header__title">Árboles como lista generalizada</h1>
             <button class="btn btn--toggle" id="toggle-menu"><i class="fa-solid fa-bars"></i></button>
         </div>
         <nav class="nav" id="nav">
@@ -36,15 +27,27 @@
                     <li><a href="#" class="nav-menu__link">Árboles</a></li>
                 </ul>
             </div>
-            <a href="#" class="btn btn--instructions">Instrucciones</a>
+            <a href="#" class="btn btn--instructions" id="btnInstructions">Instrucciones</a>
         </nav>
     </header>
+
+    <section class="modal modal-hidden" id="modal">
+        <div class="modal__container">
+            <div class="modal__header">
+                <h2 class="modal__title">Instrucciones</h2>
+                <button class="btn btn-close" id="btnModalClose">X</button>
+            </div>
+            <div class="modal__content">
+                
+            </div>
+        </div>
+    </section>
 
     <main class="container">
         <section id="enterSection" class="section section--enter">
             <label for="txtTree" class="section-enter__text">Ingrese la Lista generalizada como una Hilera</label>
             <div class="section-enter__form">
-                <input type="text" id="inputTree" class="input input--section-enter" value="" placeholder="Ej: a(b,c,d(e,f)g,h(i,j))">
+                <input type="text" id="inputTree" class="input input--section-enter" value="" placeholder="Ej: (a(b,c,d(e,f)g,h(i,j)))">
                 <button class="btn btn--section-enter btn--disabled" id="btnEnterTree">Ingresar</button>
             </div>
         </section>
@@ -60,8 +63,8 @@
                     <article class="tree-information">
                         <ul class="attribute-list">
                             <li class="attribute"><span class="attribute__name">Altura del árbol: </span><span class="attribute-value" id="treeHigh"></span></li>
-                            <li class="attribute"><span class="attribute__name">Grado del árbol: </span><span class="attribute-value" id="treeGrade"></span></span></li>
-                            <li class="attribute"><span class="attribute__name">Número de hojas: </span><span class="attribute-value" id="treeLeaves"></span></span></li>
+                            <li class="attribute"><span class="attribute__name">Grado del árbol: </span><span class="attribute-value" id="treeGrade"></span></li>
+                            <li class="attribute"><span class="attribute__name">Número de hojas: </span><span class="attribute-value" id="treeLeaves"></span></li>
                         </ul>
                     </article>
                     <article class="element-information">
@@ -73,8 +76,8 @@
                         <div class="element-information__attributes">
                             <ul class="attribute-list hidden" id="txtElementAttributes">
                                 <p class="element-information__element-founded">Se encontró el elemento <span class="element-information__element" id="txtElementFounded">a</span></p>
-                                <li class="attribute"><span class="attribute__name">Grado del elemento: </span><span class="attribute-value" id="elementGrade"></span></span></li>
-                                <li class="attribute"><span class="attribute__name">Nivel del elemento: </span><span class="attribute-value" id="elementLevel"></span></span></li>
+                                <li class="attribute"><span class="attribute__name">Grado del elemento: </span><span class="attribute-value" id="elementGrade"></span></li>
+                                <li class="attribute"><span class="attribute__name">Nivel del elemento: </span><span class="attribute-value" id="elementLevel"></span></li>
                                 <li class="attribute"><span class="attribute__name">Ancestros: </span><span class="attribute-value" id="elementAncestor"></span></span></li>
                             </ul>
                             <p class="exception hidden" id="txtElementNotFoundException">El elemento no ha sido encontrado.</p>
@@ -86,6 +89,7 @@
             <p class="exception exception--enter-tree" id="enterTreeException">Ingrese un árbol</p>
         </section>
     </main>
+
     <footer class="footer">
         <p class="footer__text"> Aplicación desarrollada como práctica para el curso Lógica y Representación III. Ingeniería de Sistemas. Universidad de Antioquia</p>
         <div class="footer__creators">
@@ -99,6 +103,7 @@
         <a class="footer__link" target="_blank" href="https://icons8.com/icon/oFRBvjBTmigj/tree">Tree</a> icon by <a class="footer__link" target="_blank" href="https://icons8.com">Icons8</a>
         </div>
     </footer>
+    
     <script src="./js/ArbolLG.js"></script>
     <script src="./js/nodoSimple.js"></script>
     <script src="./js/UiController.js"></script>
@@ -106,7 +111,5 @@
     <script src="./js/nodoLg.js"></script>
     <script src="./js/index.js"></script>
     <script src="https://kit.fontawesome.com/7532c04ea7.js" crossorigin="anonymous"></script>
-</body>
-</html>
 </body>
 </html>

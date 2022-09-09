@@ -18,6 +18,9 @@ const treeLeaves = document.getElementById('treeLeaves');
 const txtElementLevel = document.getElementById('elementLevel');
 const txtElementGrade = document.getElementById('elementGrade');
 const txtElementAncestor = document.getElementById('elementAncestor');
+const btnInstructions = document.getElementById('btnInstructions');
+const modal = document.getElementById('modal');
+const btnModalClose = document.getElementById('btnModalClose');
 //Toggle navbar menu
 btnToggleMenu.addEventListener('click', ()=>{
     Visual.toggleNav(nav);
@@ -78,4 +81,17 @@ btnSearchElement.addEventListener('click' , ()=>{
         Visual.showHTML(txtElementNotFoundException);
         Visual.hideHTML(txtElementAttributes);
     }
+});
+
+btnInstructions.addEventListener('click', ()=>{
+    modal.classList.remove('modal-hidden');
+    document.querySelector('body').style.overflowY = 'hidden';
+    if(window.innerWidth <=768){
+        Visual.toggleNav(nav);
+    }
+});
+
+btnModalClose.addEventListener('click', ()=>{
+    modal.classList.add('modal-hidden');
+    document.querySelector('body').style.overflowY = 'auto';
 });

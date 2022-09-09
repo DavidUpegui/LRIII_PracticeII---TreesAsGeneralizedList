@@ -73,3 +73,5 @@ class ArbolLG{
         return this.string.includes(el);
     }
 }
+
+
