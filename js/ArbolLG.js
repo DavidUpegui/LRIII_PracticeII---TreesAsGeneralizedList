@@ -78,83 +78,6 @@ class ArbolLG{
         }
     }
 
-    ancestros(e){
-        let pilaRecorrido = [];
-        let pilaAncestros = [];
-        let p = this.raiz;
-        pilaAncestros.push(p.retornaDato());
-        while(pilaRecorrido.length !== 0 || p !== null){
-            if(p === null){
-                p = pilaRecorrido.pop();
-                pilaAncestros.pop();
-            }else{
-                if(p.retornaSw() === 1){
-                    pilaRecorrido.push(p);
-                    p = p.retornaDato();
-                    if(p.retornaDato() === e) break
-                    else{
-                        pilaAncestros.push(p.retornaDato());
-                    }
-                }else{
-                    if(p.retornaDato() === e) break
-                }
-            }
-            p = p.retornaLiga();
-        }
-        let str = ''
-        while(pilaAncestros.length !== 0){
-            if(pilaAncestros.length === 1){
-                str = `${str}${pilaAncestros.pop()}`;
-            }else{
-                str = `${str}${pilaAncestros.pop()}, `;
-            }
-        }
-        return str
-    }
-
-    buscarDato(d){
-        let pila = [];
-        let p = this.raiz;
-        while(pila.length !== 0 || p != null){
-            if(p === null){
-                p = pila.pop()
-            }else{
-                if(p.retornaSw() === 1){
-                    pila.push(p);
-                    p = p.retornaDato()
-                }
-                if(p.retornaDato() === d){
-                    return p
-                }
-            }
-            p = p.retornaLiga();
-        }
-        return 'Dato no encontrado';
-    }
-
-    elementoEsPadre(d){
-        let pila = [];
-        let p = this.#raiz;
-        if(d === p.retornaDato()) return true;
-        let bandera = false;
-        while(pila.length !== 0 || p !== null){
-            bandera = false;
-            if(p === null){
-                p = pila.pop()
-            }else{
-                if(p.retornaSw() === 1){
-                    pila.push(p);
-                    p = p.retornaDato()
-                    bandera = true;
-                }
-                if(p.retornaDato() === d){
-                    return bandera;
-                }
-            }
-            p = p.retornaLiga();
-        }
-    }
-
     grado(){
         let q;
         let pila = [];
@@ -189,7 +112,50 @@ class ArbolLG{
         return maxGrado
     }
 
-    gradoElemento(el){
+    buscarRegistro(d){
+        let pila = [];
+        let p = this.raiz;
+        while(pila.length !== 0 || p != null){
+            if(p === null){
+                p = pila.pop()
+            }else{
+                if(p.retornaSw() === 1){
+                    pila.push(p);
+                    p = p.retornaDato()
+                }
+                if(p.retornaDato() === d){
+                    return p
+                }
+            }
+            p = p.retornaLiga();
+        }
+        return 'Dato no encontrado';
+    }
+
+    registroEsPadre(d){
+        let pila = [];
+        let p = this.#raiz;
+        if(d === p.retornaDato()) return true;
+        let bandera = false;
+        while(pila.length !== 0 || p !== null){
+            bandera = false;
+            if(p === null){
+                p = pila.pop()
+            }else{
+                if(p.retornaSw() === 1){
+                    pila.push(p);
+                    p = p.retornaDato()
+                    bandera = true;
+                }
+                if(p.retornaDato() === d){
+                    return bandera;
+                }
+            }
+            p = p.retornaLiga();
+        }
+    }
+
+    gradoRegistro(el){
         let pila = []
         let p = this.raiz;
         let grado = 0;
@@ -222,6 +188,72 @@ class ArbolLG{
             }
             p = p.retornaLiga()
         }
+    }
+
+    nivelRegistro(d){
+        if(this.raiz.retornaDato() === d){
+            return 1
+        }
+        let pila = []
+        let p = this.raiz.retornaLiga();
+        let nivel = 1
+        let bandera;
+        while(pila.length !== 0 || p != null){
+            bandera = false;
+            if(p === null){
+                p = pila.pop()
+                nivel--
+            }else{
+                if(p.retornaSw() === 1){
+                    pila.push(p);
+                    p = p.retornaDato()
+                    nivel++
+                    bandera = true;
+                }
+                if(p.retornaDato() === d){
+                    if(bandera) return nivel
+                    else return nivel + 1
+                }                
+            }
+            p = p.retornaLiga();
+        }
+    }
+
+    ancestrosRegistro(e){
+        let pilaRecorrido = [];
+        let pilaAncestros = [];
+        let p = this.raiz;
+        if(p.retornaDato() === e){
+            return 'No tiene ancestros, es la raiz.'
+        }
+        pilaAncestros.push(p.retornaDato());
+        while(pilaRecorrido.length !== 0 || p !== null){
+            if(p === null){
+                p = pilaRecorrido.pop();
+                pilaAncestros.pop();
+            }else{
+                if(p.retornaSw() === 1){
+                    pilaRecorrido.push(p);
+                    p = p.retornaDato();
+                    if(p.retornaDato() === e) break
+                    else{
+                        pilaAncestros.push(p.retornaDato());
+                    }
+                }else{
+                    if(p.retornaDato() === e) break
+                }
+            }
+            p = p.retornaLiga();
+        }
+        let str = ''
+        while(pilaAncestros.length !== 0){
+            if(pilaAncestros.length === 1){
+                str = `${str}${pilaAncestros.pop()}`;
+            }else{
+                str = `${str}${pilaAncestros.pop()}, `;
+            }
+        }
+        return str
     }
 }
 

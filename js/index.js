@@ -41,7 +41,7 @@ btnEnterTree.addEventListener('click' , ()=>{
     //¿Hace falta guardar el arbol en el sessionStorage?
 
     // let altura = arbol.altura(); //TODO
-    // let grado = arbol.grado();   //TODO
+    let grado = arbol.grado();   //TODO
     // let cantHojas = arbol.hojas(); //TODO
 
     Visual.hideHTML(txtWrongTreeException);
@@ -53,7 +53,7 @@ btnEnterTree.addEventListener('click' , ()=>{
     inputTree.value = "";
     Visual.showHTML(output);
     Visual.writeAttribute(altura = 1,treeHigh);
-    Visual.writeAttribute(grado = 1,treeGrade);
+    Visual.writeAttribute(grado,treeGrade);
     Visual.writeAttribute(cantHojas = 1,treeLeaves);
 })
 
@@ -65,17 +65,17 @@ inputElement.addEventListener('keyup', ()=>{
 //Show the element output when the button search is pressed
 btnSearchElement.addEventListener('click' , ()=>{
     let el  = inputElement.value;
-    if(arbol.containElement(el)){
-        // let elementGrade = arbol.elementGrade(el); //TODO
-        // let elementLevel = arbol.elementLevel(el); //TODO
-        // let elementAncestor = arbol.elementAncestor(el); //TODO
+    if(0 === 0){
+        let elementGrade = arbol.gradoRegistro(el); //TODO
+        let elementLevel = arbol.nivelRegistro(el); //TODO
+        let elementAncestor = arbol.ancestrosRegistro(el); //TODO
         Visual.hideHTML(txtElementNotFoundException);
         Visual.showHTML(txtElementAttributes);
         txtElementFounded.innerHTML = `${inputElement.value}`
         Visual.disableButton(btnSearchElement);
-        Visual.writeAttribute(elementGrade = 1, txtElementGrade);
-        Visual.writeAttribute(elementLevel = 1, txtElementLevel);
-        Visual.writeAttribute(elementAncestor = 1, txtElementAncestor);
+        Visual.writeAttribute(elementGrade, txtElementGrade);
+        Visual.writeAttribute(elementLevel, txtElementLevel);
+        Visual.writeAttribute(elementAncestor, txtElementAncestor);
     }
     else{
         Visual.showHTML(txtElementNotFoundException);
