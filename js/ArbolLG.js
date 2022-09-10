@@ -1,4 +1,3 @@
-
 class ArbolLG{
     #raiz = null;
     #string;
@@ -18,12 +17,60 @@ class ArbolLG{
         this.#string = string;
     }
 
-    construyeArbol(s){
-        /*
-        TODO Faltan las validaciones
-        */
-        let newS = s.replace(/\s+/g, '');
+    static validarArbolStr(str){
         let contParenthesis = 0;
+        let e;
+        if(str[0] !== '('){
+            e = new ArbolLgConstructionError('FirstParenthesisMissing')
+            throw e
+        }
+        if(str[str.length-1] !== ')'){
+            e = new ArbolLgConstructionError('CloseParenthesisMissing')
+            throw e
+        }
+        for(let i = 1; i < str.length - 1; i++){
+            switch (str[i]) {
+                case '(':
+                    contParenthesis++
+                    if(str[i+1] === '(' && str[i+1] === ',' && str[i+1] === ')'){
+                        e = new ArbolLgConstructionError('OpenParenthesisError') 
+                        throw e
+                    }
+                    break;
+                case ',':
+                    if(str[i+1] === '(' || str[i+1] === ',' || str[i+1] === ')'){
+                        e = new ArbolLgConstructionError('CommaError')
+                        throw e
+                    }
+                    break
+                case ')':
+                    contParenthesis--
+                    if(str[i+1] !== ',' && str[i+1] !== ')' ){
+                        e = new ArbolLgConstructionError('CloseParenthesisError')
+                        throw e
+                    }
+                    break
+                default:
+                    if(str[i+1] !== '(' && str[i+1] !== ')' && str[i+1] !== ','){
+                        e = new ArbolLgConstructionError('CharacterError')
+                        throw e
+                    }
+                    break;
+            }
+        }
+        if(contParenthesis>0){
+            e = new ArbolLgConstructionError('CloseParenthesisMissing')
+            throw e;
+        }
+        if(contParenthesis<0){
+            e = new ArbolLgConstructionError('OpenParenthesisMissing')
+            throw e;
+        }
+    }
+
+    construyeArbol(s){
+        let newS = s.replace(/\s+/g, '');
+        ArbolLG.validarArbolStr(newS);
         let pila = new Pila();
         this.string = newS;
         this.raiz = new NodoLg(null);
@@ -37,7 +84,6 @@ class ArbolLG{
         for(let i = 3; i <= newS.length - 2; i++){
             switch(newS[i]){
                 case '(':
-                    contParenthesis++
                     x = new NodoLg(null);
                     ultimo.asignaSw(1);
                     x.asignaDato(ultimo.retornaDato());
@@ -53,7 +99,6 @@ class ArbolLG{
                     break
                 case ')':
                     ultimo = pila.desapilar();
-                    contParenthesis--
                     break
                 default:
                     ultimo.asignaDato(newS[i]);
@@ -177,7 +222,7 @@ class ArbolLG{
             }
             p = p.retornaLiga();
         }
-        return 'Dato no encontrado';
+        return null;
     }
 
     registroEsPadre(d){
@@ -272,7 +317,7 @@ class ArbolLG{
         let pilaAncestros = [];
         let p = this.raiz;
         if(p.retornaDato() === e){
-            return 'No tiene ancestros, es la raiz.'
+            return 'No tiene ancestros, el registro es la raíz.'
         }
         pilaAncestros.push(p.retornaDato());
         while(pilaRecorrido.length !== 0 || p !== null){

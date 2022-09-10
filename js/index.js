@@ -33,26 +33,57 @@ inputTree.addEventListener('keyup', ()=>{
 
 
 btnEnterTree.addEventListener('click' , ()=>{
+    Visual.hideHTML(output);
     arbol = new ArbolLG();
-    console.log(`Construte el árbol basado en ${inputTree.value}`);
-    arbol.construyeArbol(inputTree.value);
-
-    //¿Esperar a las excepciones/Validaciones?
-    //¿Hace falta guardar el arbol en el sessionStorage?
-
-    let altura = arbol.altura(); 
-    let grado = arbol.grado();   
-    let cantHojas = arbol.hojas(); 
-    Visual.hideHTML(txtWrongTreeException);
-    Visual.hideHTML(txtElementAttributes);
-    Visual.hideHTML(txtEnterTreeException);
-    inputElement.value = '';
-    txtTreeString.innerHTML = `${inputTree.value}`;
-    Visual.disableButton(btnEnterTree);
-    Visual.showHTML(output);
-    Visual.writeAttribute(altura,treeHigh);
-    Visual.writeAttribute(grado,treeGrade);
-    Visual.writeAttribute(cantHojas,treeLeaves);
+    try{
+        arbol.construyeArbol(inputTree.value);
+        let altura = arbol.altura(); 
+        let grado = arbol.grado();   
+        let cantHojas = arbol.hojas(); 
+        Visual.hideHTML(txtWrongTreeException);
+        Visual.hideHTML(txtElementAttributes);
+        Visual.hideHTML(txtEnterTreeException);
+        inputElement.value = '';
+        txtTreeString.innerHTML = `${inputTree.value}`;
+        Visual.showHTML(output);
+        Visual.writeAttribute(altura,treeHigh);
+        Visual.writeAttribute(grado,treeGrade);
+        Visual.writeAttribute(cantHojas,treeLeaves);
+    }catch(e){
+        console.log(e);
+        let msg;
+        Visual.hideHTML(txtEnterTreeException);
+        switch(e.message){
+            case 'FirstParenthesisMissing':
+                msg = 'Error al ingresar el árbol: Faltó el paréntesis inicial'
+                Visual.showException(msg, txtWrongTreeException);
+                break;
+            case 'OpenParenthesisError':
+                msg = 'Error al ingresar el árbol: El siguiente símbolo después de un paréntesis debe un registro'
+                Visual.showException(msg, txtWrongTreeException);
+                break;
+            case 'CommaError':
+                msg = 'Error al ingresar el árbol: El siguiente símbolo después de una coma debe ser un registro'
+                Visual.showException(msg, txtWrongTreeException);
+                break;
+            case 'CloseParenthesisError':
+                msg = 'Error al ingresar el árbol: El siguiente símbolo después de un paréntesis cerrado debe ser un registro o un paréntesis cerrado'
+                Visual.showException(msg, txtWrongTreeException);
+                break;
+            case 'CharacterError':
+                msg = 'Error al ingresar el árbol: No pueden haber 2 registros juntos sin ser separados por algún paréntesis o coma'
+                Visual.showException(msg, txtWrongTreeException);
+                break;
+            case 'CloseParenthesisMissing':
+                msg = 'Error al ingresar el árbol: Hace falta un paréntesis cerrado'
+                Visual.showException(msg, txtWrongTreeException);
+                break;
+            case 'OpenParenthesisMissing':
+                msg = 'Error al ingresar el árbol: Hace falta un paréntesis abierto'
+                Visual.showException(msg, txtWrongTreeException);
+                break;
+        }
+    }
 })
 
 //Verify if some element has been ingresed in the input for enable or disable the enter button
@@ -63,14 +94,14 @@ inputElement.addEventListener('keyup', ()=>{
 //Show the element output when the button search is pressed
 btnSearchElement.addEventListener('click' , ()=>{
     let el  = inputElement.value;
-    if(0 === 0){
+    Visual.hideHTML(txtElementAttributes)
+    if(arbol.buscarRegistro(el) !== null){
         let elementGrade = arbol.gradoRegistro(el); 
         let elementLevel = arbol.nivelRegistro(el); 
         let elementAncestor = arbol.ancestrosRegistro(el); 
         Visual.hideHTML(txtElementNotFoundException);
         Visual.showHTML(txtElementAttributes);
         txtElementFounded.innerHTML = `${inputElement.value}`
-        Visual.disableButton(btnSearchElement);
         Visual.writeAttribute(elementGrade, txtElementGrade);
         Visual.writeAttribute(elementLevel, txtElementLevel);
         Visual.writeAttribute(elementAncestor, txtElementAncestor);
@@ -93,3 +124,5 @@ btnModalClose.addEventListener('click', ()=>{
     modal.classList.add('modal-hidden');
     document.querySelector('body').style.overflowY = 'auto';
 });
+
+// str = '(a(b(c,d(e)),f,g(h,i(j,k(l)),m,n)))';
