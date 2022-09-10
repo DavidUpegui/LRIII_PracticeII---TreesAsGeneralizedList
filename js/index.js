@@ -42,8 +42,7 @@ btnEnterTree.addEventListener('click' , ()=>{
 
     // let altura = arbol.altura(); //TODO
     let grado = arbol.grado();   //TODO
-    // let cantHojas = arbol.hojas(); //TODO
-
+    let cantHojas = arbol.hojas(); //TODO
     Visual.hideHTML(txtWrongTreeException);
     Visual.hideHTML(txtElementAttributes);
     Visual.hideHTML(txtEnterTreeException);
@@ -54,7 +53,7 @@ btnEnterTree.addEventListener('click' , ()=>{
     Visual.showHTML(output);
     Visual.writeAttribute(altura = 1,treeHigh);
     Visual.writeAttribute(grado,treeGrade);
-    Visual.writeAttribute(cantHojas = 1,treeLeaves);
+    Visual.writeAttribute(cantHojas,treeLeaves);
 })
 
 //Verify if some element has been ingresed in the input for enable or disable the enter button

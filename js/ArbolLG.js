@@ -111,6 +111,26 @@ class ArbolLG{
         }
         return maxGrado
     }
+    
+    hojas(){
+        let pila = [];
+        let p = this.raiz;
+        let cantHojas = 0;
+        while(pila.length !== 0 || p != null){
+            if(p === null){
+                p = pila.pop()
+            }else{
+                if(p.retornaSw() === 1){
+                    pila.push(p);
+                    p = p.retornaDato()
+                }else{
+                    cantHojas++
+                }
+            }
+            p = p.retornaLiga();
+        }
+        return cantHojas - 1;
+    }
 
     buscarRegistro(d){
         let pila = [];
