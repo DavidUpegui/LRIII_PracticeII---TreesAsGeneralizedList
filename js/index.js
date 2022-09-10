@@ -50,7 +50,6 @@ btnEnterTree.addEventListener('click' , ()=>{
         Visual.writeAttribute(grado,treeGrade);
         Visual.writeAttribute(cantHojas,treeLeaves);
     }catch(e){
-        console.log(e);
         let msg;
         Visual.hideHTML(txtEnterTreeException);
         switch(e.message){
@@ -82,6 +81,9 @@ btnEnterTree.addEventListener('click' , ()=>{
                 msg = 'Error al ingresar el árbol: Hace falta un paréntesis abierto'
                 Visual.showException(msg, txtWrongTreeException);
                 break;
+            case 'RootWithSiblingsError':
+                msg = 'Error al ingresar el árbol: La raíz no puede tener hermanos'
+                Visual.showException(msg, txtWrongTreeException);
         }
     }
 })
@@ -125,4 +127,4 @@ btnModalClose.addEventListener('click', ()=>{
     document.querySelector('body').style.overflowY = 'auto';
 });
 
-// str = '(a(b(c,d(e)),f,g(h,i(j,k(l)),m,n)))';
+// str = '(a(b(c,d(e)),f,g(h,i(j,k(l)),m,n)),p)';

@@ -20,6 +20,10 @@ class ArbolLG{
     static validarArbolStr(str){
         let contParenthesis = 0;
         let e;
+        if(str[2] == ','){
+            e = new ArbolLgConstructionError('RootWithSiblingsError');
+            throw e
+        }
         if(str[0] !== '('){
             e = new ArbolLgConstructionError('FirstParenthesisMissing')
             throw e
@@ -45,6 +49,12 @@ class ArbolLG{
                     break
                 case ')':
                     contParenthesis--
+                    if(contParenthesis === 0){
+                        if(str[i+1] === ','){
+                            e = new ArbolLgConstructionError('RootWithSiblingsError');
+                            throw e;
+                        }
+                    }
                     if(str[i+1] !== ',' && str[i+1] !== ')' ){
                         e = new ArbolLgConstructionError('CloseParenthesisError')
                         throw e
