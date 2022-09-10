@@ -28,7 +28,7 @@ class ArbolLG{
         this.string = newS;
         this.raiz = new NodoLg(null);
         this.raiz.asignaDato(newS[1]);
-        if(newS.length === 2){
+        if(newS.length === 3){
             return
         }
         let x = new NodoLg(null);
@@ -76,6 +76,34 @@ class ArbolLG{
             }
             p = p.retornaLiga();
         }
+    }
+
+    altura(){
+        let pila = []
+        let p = this.raiz;
+        let maxAltura = 1;
+        let altura = 1
+        if(p.retornaLiga() !==null){
+            altura = 2;
+            maxAltura = 2;
+        }
+        while(pila.length !== 0 || p != null){
+            if(p === null){
+                p = pila.pop()
+                altura--
+            }else{
+                if(p.retornaSw() === 1){
+                    pila.push(p);   
+                    p = p.retornaDato()
+                    altura++
+                    if(altura> maxAltura){
+                        maxAltura = altura;
+                    }
+                }
+            }
+            p = p.retornaLiga();
+        }
+        return maxAltura
     }
 
     grado(){
