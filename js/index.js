@@ -18,6 +18,9 @@ const treeLeaves = document.getElementById('treeLeaves');
 const txtElementLevel = document.getElementById('elementLevel');
 const txtElementGrade = document.getElementById('elementGrade');
 const txtElementAncestor = document.getElementById('elementAncestor');
+const btnInstructions = document.getElementById('btnInstructions');
+const modal = document.getElementById('modal');
+const btnModalClose = document.getElementById('btnModalClose');
 //Toggle navbar menu
 btnToggleMenu.addEventListener('click', ()=>{
     Visual.toggleNav(nav);
@@ -30,28 +33,59 @@ inputTree.addEventListener('keyup', ()=>{
 
 
 btnEnterTree.addEventListener('click' , ()=>{
+    Visual.hideHTML(output);
     arbol = new ArbolLG();
-    console.log(`Construte el árbol basado en ${inputTree.value}`);
-    arbol.construyeArbol(inputTree.value);
-
-    //¿Esperar a las excepciones/Validaciones?
-    //¿Hace falta guardar el arbol en el sessionStorage?
-
-    // let altura = arbol.altura(); //TODO
-    // let grado = arbol.grado();   //TODO
-    // let cantHojas = arbol.hojas(); //TODO
-
-    Visual.hideHTML(txtWrongTreeException);
-    Visual.hideHTML(txtElementAttributes);
-    Visual.hideHTML(txtEnterTreeException);
-    inputElement.value = '';
-    txtTreeString.innerHTML = `${inputTree.value}`;
-    Visual.disableButton(btnEnterTree);
-    inputTree.value = "";
-    Visual.showHTML(output);
-    Visual.writeAttribute(altura = 1,treeHigh);
-    Visual.writeAttribute(grado = 1,treeGrade);
-    Visual.writeAttribute(cantHojas = 1,treeLeaves);
+    try{
+        arbol.construyeArbol(inputTree.value);
+        let altura = arbol.altura(); 
+        let grado = arbol.grado();   
+        let cantHojas = arbol.hojas(); 
+        Visual.hideHTML(txtWrongTreeException);
+        Visual.hideHTML(txtElementAttributes);
+        Visual.hideHTML(txtEnterTreeException);
+        inputElement.value = '';
+        txtTreeString.innerHTML = `${inputTree.value}`;
+        Visual.showHTML(output);
+        Visual.writeAttribute(altura,treeHigh);
+        Visual.writeAttribute(grado,treeGrade);
+        Visual.writeAttribute(cantHojas,treeLeaves);
+    }catch(e){
+        let msg;
+        Visual.hideHTML(txtEnterTreeException);
+        switch(e.message){
+            case 'FirstParenthesisMissing':
+                msg = 'Error al ingresar el árbol: Faltó el paréntesis inicial'
+                Visual.showException(msg, txtWrongTreeException);
+                break;
+            case 'OpenParenthesisError':
+                msg = 'Error al ingresar el árbol: El siguiente símbolo después de un paréntesis debe un registro'
+                Visual.showException(msg, txtWrongTreeException);
+                break;
+            case 'CommaError':
+                msg = 'Error al ingresar el árbol: El siguiente símbolo después de una coma debe ser un registro'
+                Visual.showException(msg, txtWrongTreeException);
+                break;
+            case 'CloseParenthesisError':
+                msg = 'Error al ingresar el árbol: El siguiente símbolo después de un paréntesis cerrado debe ser un registro o un paréntesis cerrado'
+                Visual.showException(msg, txtWrongTreeException);
+                break;
+            case 'CharacterError':
+                msg = 'Error al ingresar el árbol: No pueden haber 2 registros juntos sin ser separados por algún paréntesis o coma'
+                Visual.showException(msg, txtWrongTreeException);
+                break;
+            case 'CloseParenthesisMissing':
+                msg = 'Error al ingresar el árbol: Hace falta un paréntesis cerrado'
+                Visual.showException(msg, txtWrongTreeException);
+                break;
+            case 'OpenParenthesisMissing':
+                msg = 'Error al ingresar el árbol: Hace falta un paréntesis abierto'
+                Visual.showException(msg, txtWrongTreeException);
+                break;
+            case 'RootWithSiblingsError':
+                msg = 'Error al ingresar el árbol: La raíz no puede tener hermanos'
+                Visual.showException(msg, txtWrongTreeException);
+        }
+    }
 })
 
 //Verify if some element has been ingresed in the input for enable or disable the enter button
@@ -62,20 +96,35 @@ inputElement.addEventListener('keyup', ()=>{
 //Show the element output when the button search is pressed
 btnSearchElement.addEventListener('click' , ()=>{
     let el  = inputElement.value;
-    if(arbol.containElement(el)){
-        // let elementGrade = arbol.elementGrade(el); //TODO
-        // let elementLevel = arbol.elementLevel(el); //TODO
-        // let elementAncestor = arbol.elementAncestor(el); //TODO
+    Visual.hideHTML(txtElementAttributes)
+    if(arbol.buscarRegistro(el) !== null){
+        let elementGrade = arbol.gradoRegistro(el); 
+        let elementLevel = arbol.nivelRegistro(el); 
+        let elementAncestor = arbol.ancestrosRegistro(el); 
         Visual.hideHTML(txtElementNotFoundException);
         Visual.showHTML(txtElementAttributes);
         txtElementFounded.innerHTML = `${inputElement.value}`
-        Visual.disableButton(btnSearchElement);
-        Visual.writeAttribute(elementGrade = 1, txtElementGrade);
-        Visual.writeAttribute(elementLevel = 1, txtElementLevel);
-        Visual.writeAttribute(elementAncestor = 1, txtElementAncestor);
+        Visual.writeAttribute(elementGrade, txtElementGrade);
+        Visual.writeAttribute(elementLevel, txtElementLevel);
+        Visual.writeAttribute(elementAncestor, txtElementAncestor);
     }
     else{
         Visual.showHTML(txtElementNotFoundException);
         Visual.hideHTML(txtElementAttributes);
     }
 });
+
+btnInstructions.addEventListener('click', ()=>{
+    modal.classList.remove('modal-hidden');
+    document.querySelector('body').style.overflowY = 'hidden';
+    if(window.innerWidth <=768){
+        Visual.toggleNav(nav);
+    }
+});
+
+btnModalClose.addEventListener('click', ()=>{
+    modal.classList.add('modal-hidden');
+    document.querySelector('body').style.overflowY = 'auto';
+});
+
+// str = '(a(b(c,d(e)),f,g(h,i(j,k(l)),m,n)),p)';

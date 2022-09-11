@@ -4,15 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300&display=swap" rel="stylesheet">
@@ -25,26 +16,95 @@
             <picture class="header__icon">
                 <img src="./images/icons8-tree-96.png" alt="" class="header__img">
             </picture>
-            <h1 class="header__title"> Árboles como lista generalizada</h1>
+            <h1 class="header__title">Árboles como lista generalizada</h1>
             <button class="btn btn--toggle" id="toggle-menu"><i class="fa-solid fa-bars"></i></button>
         </div>
         <nav class="nav" id="nav">
             <div class="nav-menu" id="menu">
-                <ul class="nav-menu__items">
+                <ul class="list nav-menu__items">
                     <li><a href="#" class="nav-menu__link nav-menu__link--active">Inicio</a></li>
                     <li><a href="#" class="nav-menu__link">Listas Generalizadas</a></li>
                     <li><a href="#" class="nav-menu__link">Árboles</a></li>
                 </ul>
             </div>
-            <a href="#" class="btn btn--instructions">Instrucciones</a>
+            <a href="#" class="btn btn--instructions" id="btnInstructions">Instrucciones</a>
         </nav>
     </header>
+
+    <section class="modal modal-hidden" id="modal">
+        <div class="modal__container">
+            <div class="modal__header">
+                <h2 class="modal__title">Instrucciones de uso</h2>
+                <button class="btn btn-close" id="btnModalClose">X</button>
+            </div>
+            <div class="modal__content">
+                <div class="instruction">
+                    <h3 class="instruction__title">1. Ingresar el árbol</h3>
+                    <p class="instruction__text">Para ingresar el árbol como hilera siga las siguientes reglas:</p>
+                    <ul class="list list--modal-instruction">
+                        <li class="instruction__list-element">El árbol siempre debe iniciar con paréntesis abierto</li>
+                        <li class="instruction__list-element">Todo paréntesis abierto debe cerrarse</li>
+                        <li class="instruction__list-element">Use las letras (solo una letra) para indicar un elemento del árbol</li>
+                        <li class="instruction__list-element">Use los paréntesis abiertos para asignar los hijos del elemento anterior, por ejemplo el árbol <span class="code-fragment">(a(b,c))</span> se refiere a un elemento a con hijos <span class="code-fragment">b</span> y <span class="code-fragment">c</span>. </li>
+                        <li class="instruction__list-element">Use las comas para separar los hermanos, por ejemplo en el arbol <span class="code-fragment">(a(b,c))</span> los elementos <span class="code-fragment">b</span>  y <span class="code-fragment">c</span> son hermanos.</li>
+                        <li class="instruction__list-element">Use los paréntesis cerrados para delimitar los hijos de uno de los elementos, por ejemplo en el árbol <span class="code-fragment">(a(b(c,d),f))</span> , <span class="code-fragment">c</span> y <span class="code-fragment">d</span> son son hijos de <span class="code-fragment">b</span>.</li>
+                        <li class="instruction__list-element">El primer elemento en un árbol es la raíz, la raíz no tiene hermanos. Por ejemplo, el arbol <span class="code-fragment">(a,b)</span> o el arbol <span class="code-fragment">(a(b,c),d)</span> está mal escrito.</li>
+                        <li class="instruction__list-element"><b>Nota: </b>El árbol más pequeño no vació es <span class="code-fragment">(a)</span>, un árbol con s único elemento la raíz.</li>
+                    </ul>
+                    <p class="instruction__text">El árbol deberá ingresarse en la barra de texto. El botón para ingresar el árbol se activará únicamente cuando algún valor haya sido ingresado. Una vez haya ingresado el árbol presione el botón ingresar.</p>
+                    <div class="instruction__picture">
+                        <img src="./images/tree-input-img.PNG" alt="ingreso de árbol" class="instruction__img">
+                    </div>
+                    <p class="instruction__text">En el caso en que haya ingresado el árbol erróneamente le saltará un mensaje advirtiéndoles cuál pudo haber sido su equivocación.</p>
+                    <div class="instruction__picture">
+                        <img src="./images/tree-output-exception-img.PNG" alt="Árbol ingresado incorrectamente" class="instruction__img">
+                    </div>
+                    <p class="instruction__text">Si el árbol fue ingresado satisfactoriamente se mostrará una pantalla en la que podrá encontrar la siguiente información:</p>
+                    <ul class="list list--modal-instruction">
+                        <li class="instruction__list-element">El árbol que acaba de ingresar.</li>
+                        <li class="instruction__list-element">La altura del árbol.</li>
+                        <li class="instruction__list-element">El grado del árbol.</li>
+                        <li class="instruction__list-element">El número de hojas del árbol.</li>
+                        <li class="instruction__list-element">Una barra de texto para buscar un elemento del árbol.</li>
+                    </ul>
+                    <div class="instruction__picture">
+                        <img src="./images/tree-output-succes-img.PNG" alt="Respuesta de árbol ingresado correctamente" class="instruction__img">
+                    </div>
+                </div>
+                <div class="insruction">
+                    <h3 class="instruction__title">2. Buscar un elemento del árbol</h3>
+                    <p class="instruction__text">Después de haber ingresado el árbol correctamente podrá estar interesado en buscar un elemento y encontrar algunas de sus propiedades, para hacer esto deberá digitar el elemento en la barra de búsqueda situada a la derecha.</p>
+                    <div class="instruction__picture">
+                        <img src="./images/element-input-img.PNG" alt="Ingreso del elemento" class="instruction__img">
+                    </div>
+                    <p class="instruction__text">En el caso en que el elemento no haya sido encontrado en la pantalla se mostrará el siguiente mensaje:</p>
+                    <div class="instruction__picture">
+                        <img src="./images/element.outputException-img.PNG" alt="Respuesta de elemento no encontrado" class="instruction__img">
+                    </div>
+                    <p class="instruction__text">Por otro lado, si el elemento fue encontrado, en pantalla se mostrará la siguiente información:</p>
+                    <ul class="list list--modal-instruction">
+                        <li class="instruction__list-element">El elemento que se buscó.</li>
+                        <li class="instruction__list-element">El grado del elemento.</li>
+                        <li class="instruction__list-element">El nivel del elemento.</li>
+                        <li class="instruction__list-element">Los ancestros del elemento</li>
+                    </ul>
+                    <div class="instruction__picture">
+                        <img src="./images/element-output-img.PNG" alt="Respuesta de elemento encontrado" class="instruction__img">
+                    </div>
+                </div>
+                <div class="instruction">
+                    <h3 class="instruction__title">3. Ingresar un nuevo árbol</h3>
+                    <p class="instruction__text">Para ingresar un nuevo árbol solo basta con volver a digitar un nuevo árbol en la barra de texto superior, siguiendo las normativas vistas en la sección 1.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <main class="container">
         <section id="enterSection" class="section section--enter">
             <label for="txtTree" class="section-enter__text">Ingrese la Lista generalizada como una Hilera</label>
             <div class="section-enter__form">
-                <input type="text" id="inputTree" class="input input--section-enter" value="" placeholder="Ej: a(b,c,d(e,f)g,h(i,j))">
+                <input type="text" id="inputTree" class="input input--section-enter" value="(a(b(c,d(e)),f,g(h,i(j,k(l)),m,n)))" placeholder="Ej: (a(b,c,d(e,f)g,h(i,j)))">
                 <button class="btn btn--section-enter btn--disabled" id="btnEnterTree">Ingresar</button>
             </div>
         </section>
@@ -58,10 +118,10 @@
                 </article>
                 <div class="tree-attributes">
                     <article class="tree-information">
-                        <ul class="attribute-list">
+                        <ul class="list">
                             <li class="attribute"><span class="attribute__name">Altura del árbol: </span><span class="attribute-value" id="treeHigh"></span></li>
-                            <li class="attribute"><span class="attribute__name">Grado del árbol: </span><span class="attribute-value" id="treeGrade"></span></span></li>
-                            <li class="attribute"><span class="attribute__name">Número de hojas: </span><span class="attribute-value" id="treeLeaves"></span></span></li>
+                            <li class="attribute"><span class="attribute__name">Grado del árbol: </span><span class="attribute-value" id="treeGrade"></span></li>
+                            <li class="attribute"><span class="attribute__name">Número de hojas: </span><span class="attribute-value" id="treeLeaves"></span></li>
                         </ul>
                     </article>
                     <article class="element-information">
@@ -71,10 +131,10 @@
                             <button class="btn btn--search-element btn--disabled" id="btnSearchElement"><i class="btn__icon fa-solid fa-magnifying-glass"></i><span class="btn__text--search">Buscar</span></button>
                         </div>
                         <div class="element-information__attributes">
-                            <ul class="attribute-list hidden" id="txtElementAttributes">
+                            <ul class="list hidden" id="txtElementAttributes">
                                 <p class="element-information__element-founded">Se encontró el elemento <span class="element-information__element" id="txtElementFounded">a</span></p>
-                                <li class="attribute"><span class="attribute__name">Grado del elemento: </span><span class="attribute-value" id="elementGrade"></span></span></li>
-                                <li class="attribute"><span class="attribute__name">Nivel del elemento: </span><span class="attribute-value" id="elementLevel"></span></span></li>
+                                <li class="attribute"><span class="attribute__name">Grado del elemento: </span><span class="attribute-value" id="elementGrade"></span></li>
+                                <li class="attribute"><span class="attribute__name">Nivel del elemento: </span><span class="attribute-value" id="elementLevel"></span></li>
                                 <li class="attribute"><span class="attribute__name">Ancestros: </span><span class="attribute-value" id="elementAncestor"></span></span></li>
                             </ul>
                             <p class="exception hidden" id="txtElementNotFoundException">El elemento no ha sido encontrado.</p>
@@ -86,6 +146,7 @@
             <p class="exception exception--enter-tree" id="enterTreeException">Ingrese un árbol</p>
         </section>
     </main>
+
     <footer class="footer">
         <p class="footer__text"> Aplicación desarrollada como práctica para el curso Lógica y Representación III. Ingeniería de Sistemas. Universidad de Antioquia</p>
         <div class="footer__creators">
@@ -99,6 +160,8 @@
         <a class="footer__link" target="_blank" href="https://icons8.com/icon/oFRBvjBTmigj/tree">Tree</a> icon by <a class="footer__link" target="_blank" href="https://icons8.com">Icons8</a>
         </div>
     </footer>
+    
+    <script src="./js/ArbolLgConstructionError.js"></script>
     <script src="./js/ArbolLG.js"></script>
     <script src="./js/nodoSimple.js"></script>
     <script src="./js/UiController.js"></script>
@@ -106,7 +169,5 @@
     <script src="./js/nodoLg.js"></script>
     <script src="./js/index.js"></script>
     <script src="https://kit.fontawesome.com/7532c04ea7.js" crossorigin="anonymous"></script>
-</body>
-</html>
 </body>
 </html>

@@ -28,4 +28,9 @@ class Visual{
         htmlElement.innerHTML = value;
     }
 
+    static showException(msg, htmlElement){
+        htmlElement.classList.remove('hidden');
+        htmlElement.textContent = msg;
+    }
+
 }
