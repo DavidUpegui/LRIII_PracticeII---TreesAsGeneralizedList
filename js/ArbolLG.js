@@ -1,3 +1,4 @@
+
 class ArbolLG{
     #raiz = null;
     #string;
@@ -17,6 +18,10 @@ class ArbolLG{
         this.#string = string;
     }
 
+    /**
+     * 
+     * @param {String} str Un árbol representado como Hilera que se quiera representar como Lista generalizada.
+     */
     static validarArbolStr(str){
         let contParenthesis = 0;
         let e;
@@ -78,6 +83,10 @@ class ArbolLG{
         }
     }
 
+    /**
+     * 
+     * @param {string} s El árbol representado como Hilera que se quiera representar como Lista generalizada
+     */
     construyeArbol(s){
         let newS = s.replace(/\s+/g, '');
         ArbolLG.validarArbolStr(newS);
@@ -116,6 +125,9 @@ class ArbolLG{
         }
     }
 
+    /**
+     * Método que recorre el un ArbolLg y lo imprime en la consola
+     */
     muestraArbol(){
         let pila = [];
         let p = this.raiz;
@@ -133,6 +145,10 @@ class ArbolLG{
         }
     }
 
+    /**
+     * Altura del un ArbolLG
+     * @returns {int}
+     */
     altura(){
         let pila = []
         let p = this.raiz;
@@ -161,6 +177,10 @@ class ArbolLG{
         return maxAltura
     }
 
+    /**
+     * Grado del ArbolLG
+     * @returns {int}
+     */
     grado(){
         let q;
         let pila = [];
@@ -195,6 +215,10 @@ class ArbolLG{
         return maxGrado
     }
     
+    /**
+     * Hojas del ArbolLG
+     * @returns {int}
+     */
     hojas(){
         let pila = [];
         let p = this.raiz;
@@ -215,6 +239,11 @@ class ArbolLG{
         return cantHojas - 1;
     }
 
+    /**
+     * 
+     * @param {char} d Registro del ArbolLG 
+     * @returns {NodoLg}
+     */
     buscarRegistro(d){
         let pila = [];
         let p = this.raiz;
@@ -235,29 +264,11 @@ class ArbolLG{
         return null;
     }
 
-    registroEsPadre(d){
-        let pila = [];
-        let p = this.#raiz;
-        if(d === p.retornaDato()) return true;
-        let bandera = false;
-        while(pila.length !== 0 || p !== null){
-            bandera = false;
-            if(p === null){
-                p = pila.pop()
-            }else{
-                if(p.retornaSw() === 1){
-                    pila.push(p);
-                    p = p.retornaDato()
-                    bandera = true;
-                }
-                if(p.retornaDato() === d){
-                    return bandera;
-                }
-            }
-            p = p.retornaLiga();
-        }
-    }
-
+    /**
+     * 
+     * @param {char} el Registro del ArbolLG 
+     * @returns {int} 
+     */
     gradoRegistro(el){
         let pila = []
         let p = this.raiz;
@@ -291,8 +302,13 @@ class ArbolLG{
             }
             p = p.retornaLiga()
         }
+        return -1;
     }
-
+    /**
+     * 
+     * @param {char} d Registro del ArbolLG
+     * @returns {int} Retorna -1 si el elemento no fue encontrado
+     */
     nivelRegistro(d){
         if(this.raiz.retornaDato() === d){
             return 1
@@ -320,8 +336,14 @@ class ArbolLG{
             }
             p = p.retornaLiga();
         }
+        return -1
     }
 
+    /**
+     * 
+     * @param {char} e Registro del ArbolLG 
+     * @returns {String}
+     */
     ancestrosRegistro(e){
         let pilaRecorrido = [];
         let pilaAncestros = [];
