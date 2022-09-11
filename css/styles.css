@@ -285,8 +285,9 @@ a{
     text-align: center;
     color: rgb(126, 31, 31);
     font-weight: 600;
-    width: max-content;
+    width: 80%;
     font-size: 14px;
+    word-wrap: normal;
 }
 .exception--enter-tree{
     font-size: 4rem;
