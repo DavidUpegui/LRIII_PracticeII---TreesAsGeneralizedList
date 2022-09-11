@@ -1,4 +1,3 @@
-
 const nav = document.getElementById('nav');
 const btnToggleMenu = document.getElementById('toggle-menu');
 const btnEnterTree = document.getElementById('btnEnterTree');
@@ -21,6 +20,7 @@ const txtElementAncestor = document.getElementById('elementAncestor');
 const btnInstructions = document.getElementById('btnInstructions');
 const modal = document.getElementById('modal');
 const btnModalClose = document.getElementById('btnModalClose');
+
 //Toggle navbar menu
 btnToggleMenu.addEventListener('click', ()=>{
     Visual.toggleNav(nav);
@@ -44,7 +44,7 @@ btnEnterTree.addEventListener('click' , ()=>{
         Visual.hideHTML(txtElementAttributes);
         Visual.hideHTML(txtEnterTreeException);
         inputElement.value = '';
-        txtTreeString.innerHTML = `${inputTree.value}`;
+        txtTreeString.innerHTML = `${arbol.muestraComoHilera()}`;
         Visual.showHTML(output);
         Visual.writeAttribute(altura,treeHigh);
         Visual.writeAttribute(grado,treeGrade);

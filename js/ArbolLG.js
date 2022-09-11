@@ -128,21 +128,29 @@ class ArbolLG{
     /**
      * Método que recorre el un ArbolLg y lo imprime en la consola
      */
-    muestraArbol(){
+    muestraComoHilera(){
         let pila = [];
-        let p = this.raiz;
+        if(this.raiz.retornaLiga() === null) return `(${this.raiz.retornaDato()})`
+        let str = `(${this.raiz.retornaDato()}(`;
+        let p = this.raiz.retornaLiga();
         while(pila.length !== 0 || p != null){
             if(p === null){
                 p = pila.pop()
+                if(p.retornaLiga() === null) str = str + ')';
+                else str = str + '),';
             }else{
                 if(p.retornaSw() === 1){
                     pila.push(p);
-                    p = p.retornaDato()
+                    p = p.retornaDato();
+                    str = str + `${p.retornaDato()}(`
+                }else{
+                    if(p.retornaLiga() === null) str = str + `${p.retornaDato()}`;
+                    else str = str + `${p.retornaDato()},`
                 }
-                console.log(p.retornaDato())
             }
             p = p.retornaLiga();
         }
+        return str + '))'
     }
 
     /**
