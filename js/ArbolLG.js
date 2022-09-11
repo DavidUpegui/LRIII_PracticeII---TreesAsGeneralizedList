@@ -81,7 +81,7 @@ class ArbolLG{
     construyeArbol(s){
         let newS = s.replace(/\s+/g, '');
         ArbolLG.validarArbolStr(newS);
-        let pila = new Pila();
+        let pila = [];
         this.string = newS;
         this.raiz = new NodoLg(null);
         this.raiz.asignaDato(newS[1]);
@@ -98,7 +98,7 @@ class ArbolLG{
                     ultimo.asignaSw(1);
                     x.asignaDato(ultimo.retornaDato());
                     ultimo.asignaDato(x);
-                    pila.apilar(ultimo);
+                    pila.push(ultimo);
                     ultimo = new NodoLg(null);
                     x.asignaLiga(ultimo);
                     break
@@ -108,7 +108,7 @@ class ArbolLG{
                     ultimo = x;
                     break
                 case ')':
-                    ultimo = pila.desapilar();
+                    ultimo = pila.pop();
                     break
                 default:
                     ultimo.asignaDato(newS[i]);
