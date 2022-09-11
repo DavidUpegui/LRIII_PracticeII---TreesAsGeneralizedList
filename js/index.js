@@ -58,7 +58,7 @@ btnEnterTree.addEventListener('click' , ()=>{
                 Visual.showException(msg, txtWrongTreeException);
                 break;
             case 'OpenParenthesisError':
-                msg = 'Error al ingresar el árbol: El siguiente símbolo después de un paréntesis debe un registro'
+                msg = 'Error al ingresar el árbol: El siguiente símbolo después de un paréntesis  debe un registro'
                 Visual.showException(msg, txtWrongTreeException);
                 break;
             case 'CommaError':

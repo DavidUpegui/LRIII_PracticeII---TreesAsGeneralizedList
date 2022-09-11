@@ -36,7 +36,7 @@ class ArbolLG{
             switch (str[i]) {
                 case '(':
                     contParenthesis++
-                    if(str[i+1] === '(' && str[i+1] === ',' && str[i+1] === ')'){
+                    if(str[i+1] === '(' || str[i+1] === ',' || str[i+1] === ')'){
                         e = new ArbolLgConstructionError('OpenParenthesisError') 
                         throw e
                     }
